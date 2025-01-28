@@ -9,6 +9,7 @@ import './App.css';
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showConsultModal, setShowConsultModal] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -41,6 +42,10 @@ function App() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   const practiceAreas = [
     {
       title: "Civil Litigation",
@@ -66,7 +71,12 @@ function App() {
           <div className="logo">
             <img src={require('./KAMALA-KUMAR-Associates-Logo.png')} alt="Kamala Kumar Associates Logo" className="logo-image" />
           </div>
-          <ul className="nav-links">
+          <button className="mobile-nav-toggle" onClick={toggleMobileMenu}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
